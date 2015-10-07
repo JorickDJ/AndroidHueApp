@@ -48,11 +48,9 @@ public class LightRetriever extends AsyncTask<String, Void, ArrayList<Light>> {
                 Light light = new Light();
                 String key = (String)keys.next();
                 JSONObject state = _o.getJSONObject(key).getJSONObject("state");
-                JSONArray tempXy = state.getJSONArray("xy");
 
                 light.key = key;
-                //light.id = _o.getJSONObject(key).getString("uniqueid");
-                light.id = "hue-" + key;
+                light.id = _o.getJSONObject(key).getString("uniqueid");
                 light.name = _o.getJSONObject(key).getString("name");
                 light.brightness = state.getInt("bri");
                 light.on = state.getBoolean("on");
