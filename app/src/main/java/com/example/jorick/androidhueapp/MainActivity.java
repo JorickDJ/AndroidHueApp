@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         lstLights.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent detailIntent = new Intent(getApplicationContext(), LightDetail.class);
+                Intent detailIntent = new Intent(getApplicationContext(), LightDetailActivity.class);
                 detailIntent.putExtra("light", adapter.getItem((int) id));
 
                 startActivity(detailIntent);
@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
+        //getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 

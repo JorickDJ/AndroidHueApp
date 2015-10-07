@@ -10,11 +10,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:text="Status" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="20dp"
+        android:id="@+id/onSwitch" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
         android:text="Helderheid" />
 
     <SeekBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingTop="10dp"
         android:paddingBottom="20dp"
         android:max="255"
         android:id="@+id/seekBar" />
@@ -23,13 +37,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
-        android:text="Status" />
+        android:text="Saturation" />
 
-    <Switch
-        android:layout_width="wrap_content"
+    <SeekBar
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Aan/uit"
-        android:id="@+id/onSwitch" />
+        android:paddingTop="10dp"
+        android:paddingBottom="20dp"
+        android:max="255"
+        android:id="@+id/seekSaturation" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Medium"
+        android:text="Hue" />
+
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="20dp"
+        android:max="65535"
+        android:id="@+id/seekHue" />
 
 </LinearLayout>

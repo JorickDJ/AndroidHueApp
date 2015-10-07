@@ -23,18 +23,24 @@ public class LightSender extends AsyncTask<String, Void, Void> {
     @Override
     protected Void doInBackground(String... params) {
         try {
-            URL url = new URL("http://" + params[0] + "/api/" + params[1] + "/lights/" + light.key);
-            HttpURLConnection urlConnection = (HttpURLConnection)
-                    url.openConnection();
+            Log.i("Sender URL", "http://" + params[0] + "/api/" + params[1] + "/lights/" + light.key + "/state");
+
+            URL url = new URL("http://"+params[0]+"/api/"+params[1]+"/lights/"+light.key+"/state");
+            HttpURLConnection urlConnection = (HttpURLConnection)  url.openConnection();
+
             urlConnection.setRequestMethod("PUT");
             urlConnection.setDoOutput(true);
-            urlConnection.setDoInput(true);
             urlConnection.setRequestProperty("Content-Type", "application/json");
 
-
             JSONObject json = new JSONObject();
-            //json.put("bri", light.brightness);
             json.put("on", light.on);
+
+            if (light.on) {
+                json.put("bri", light.brightness);
+                json.put("hue", light.hue);
+                json.put("sat", light.sat);
+            }
+
             byte[] jsonData = json.toString().getBytes("UTF-8");
 
             urlConnection.connect();
@@ -44,7 +50,7 @@ public class LightSender extends AsyncTask<String, Void, Void> {
             oi.flush();
             oi.close();
 
-            Log.i("Light status", "" + urlConnection.getResponseCode());
+            Log.i("HTTP Response:", ""+urlConnection.getResponseCode());
         } catch (Exception e) {
             //
         }
