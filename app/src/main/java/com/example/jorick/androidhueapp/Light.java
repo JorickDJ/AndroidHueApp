@@ -9,8 +9,8 @@ import java.util.HashMap;
 /**
  * Created by Jorick on 06/10/15.
  */
-public class Light implements Parcelable
-{
+public class Light implements Parcelable {
+    
     public String key;
     public String id;
     public String name;
@@ -23,8 +23,7 @@ public class Light implements Parcelable
 
     }
 
-    protected Light(Parcel in)
-    {
+    protected Light(Parcel in) {
         key = in.readString();
         id = in.readString();
         name = in.readString();
@@ -34,30 +33,25 @@ public class Light implements Parcelable
         sat = in.readInt();
     }
 
-    public static final Creator<Light> CREATOR = new Creator<Light>()
-    {
+    public static final Creator<Light> CREATOR = new Creator<Light>() {
         @Override
-        public Light createFromParcel(Parcel in)
-        {
+        public Light createFromParcel(Parcel in) {
             return new Light(in);
         }
 
         @Override
-        public Light[] newArray(int size)
-        {
+        public Light[] newArray(int size) {
             return new Light[size];
         }
     };
 
     @Override
-    public int describeContents()
-    {
+    public int describeContents() {
         return 0;
     }
 
     @Override
-    public void writeToParcel(Parcel dest, int flags)
-    {
+    public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(key);
         dest.writeString(id);
         dest.writeString(name);

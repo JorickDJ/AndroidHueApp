@@ -30,13 +30,13 @@ public class LightRetriever extends AsyncTask<String, Void, ArrayList<Light>> {
         String response = "";
         ArrayList<Light> lights = new ArrayList<>();
 
-        try{
-            URL url = new URL("http://"+params[0]+"/api/"+params[1]+"/lights");
+        try {
+            URL url = new URL("http://" + params[0] + "/api/" + params[1] + "/lights");
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             BufferedReader reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 
             String line;
-            while((line = reader.readLine()) != null){
+            while ((line = reader.readLine()) != null) {
                 response += line;
             }
             reader.close();
@@ -44,9 +44,9 @@ public class LightRetriever extends AsyncTask<String, Void, ArrayList<Light>> {
             JSONObject _o = new JSONObject(response);
             Iterator<?> keys = _o.keys();
 
-            while(keys.hasNext()) {
+            while (keys.hasNext()) {
                 Light light = new Light();
-                String key = (String)keys.next();
+                String key = (String) keys.next();
                 JSONObject state = _o.getJSONObject(key).getJSONObject("state");
 
                 light.key = key;
@@ -59,7 +59,7 @@ public class LightRetriever extends AsyncTask<String, Void, ArrayList<Light>> {
 
                 lights.add(light);
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             Log.e("Dikke error, ey", e.getMessage());
         }
 

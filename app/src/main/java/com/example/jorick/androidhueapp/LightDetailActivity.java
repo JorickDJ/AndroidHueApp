@@ -30,33 +30,27 @@ public class LightDetailActivity extends AppCompatActivity {
         _seeker.setProgress(light.brightness);
         _switch.setChecked(light.on);
 
-        _switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener()
-        {
+        _switch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
-            {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 light.on = isChecked;
                 Bridge.getInstance().sendLightState(light);
             }
         });
 
-        _seeker.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
-        {
+        _seeker.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser)
-            {
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 light.brightness = progress;
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar)
-            {
+            public void onStartTrackingTouch(SeekBar seekBar) {
                 //
             }
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar)
-            {
+            public void onStopTrackingTouch(SeekBar seekBar) {
                 Bridge.getInstance().sendLightState(light);
             }
         });
@@ -78,23 +72,19 @@ public class LightDetailActivity extends AppCompatActivity {
             }
         });
 
-        _seekerHue.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener()
-        {
+        _seekerHue.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser)
-            {
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 light.hue = progress;
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar)
-            {
+            public void onStartTrackingTouch(SeekBar seekBar) {
 
             }
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar)
-            {
+            public void onStopTrackingTouch(SeekBar seekBar) {
                 Bridge.getInstance().sendLightState(light);
             }
         });

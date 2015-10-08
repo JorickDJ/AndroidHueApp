@@ -17,7 +17,7 @@ public class Bridge {
     }
 
     public static Bridge getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new Bridge();
         }
 
@@ -39,8 +39,7 @@ public class Bridge {
     }
 
     public void sendLightState(Light light) {
-        LightSender sender = new LightSender(light);
-        sender.execute(ip, key);
+        new LightSender(light).execute(ip, key);
     }
 
     public interface OnDataChangedListener {

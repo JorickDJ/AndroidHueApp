@@ -25,8 +25,8 @@ public class LightSender extends AsyncTask<String, Void, Void> {
         try {
             Log.i("Sender URL", "http://" + params[0] + "/api/" + params[1] + "/lights/" + light.key + "/state");
 
-            URL url = new URL("http://"+params[0]+"/api/"+params[1]+"/lights/"+light.key+"/state");
-            HttpURLConnection urlConnection = (HttpURLConnection)  url.openConnection();
+            URL url = new URL("http://" + params[0] + "/api/" + params[1] + "/lights/" + light.key + "/state");
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 
             urlConnection.setRequestMethod("PUT");
             urlConnection.setDoOutput(true);
@@ -50,7 +50,7 @@ public class LightSender extends AsyncTask<String, Void, Void> {
             oi.flush();
             oi.close();
 
-            Log.i("HTTP Response:", ""+urlConnection.getResponseCode());
+            Log.i("HTTP Response:", "" + urlConnection.getResponseCode());
         } catch (Exception e) {
             //
         }
