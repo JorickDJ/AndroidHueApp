@@ -50,7 +50,7 @@ public class LightSender extends AsyncTask<String, Void, Void> {
             oi.flush();
             oi.close();
 
-            Log.i("HTTP Response:", "" + urlConnection.getResponseCode());
+            //Log.i("HTTP Response:", "" + urlConnection.getResponseCode());
         } catch (Exception e) {
             //
         }

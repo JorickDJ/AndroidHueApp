@@ -18,12 +18,12 @@ public class SettingsActivity extends AppCompatActivity {
         TextView txtBridgeIp = (TextView) findViewById(R.id.txtBridgeIp);
         TextView txtBridgeKey = (TextView) findViewById(R.id.txtBridgeKey);
 
-        final Button button = (Button) findViewById(R.id.btnSaveSettings);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                settingsEditor.putString("COUNTRY", txtCountry.getText().toString());
-                settingsEditor.apply();
-            }
-        });
+//        final Button button = (Button) findViewById(R.id.btnSaveSettings);
+//        button.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View v) {
+//                settingsEditor.putString("COUNTRY", txtCountry.getText().toString());
+//                settingsEditor.apply();
+//            }
+//        });
     }
 }

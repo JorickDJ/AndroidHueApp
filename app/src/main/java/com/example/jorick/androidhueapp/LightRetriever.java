@@ -45,19 +45,22 @@ public class LightRetriever extends AsyncTask<String, Void, ArrayList<Light>> {
             Iterator<?> keys = _o.keys();
 
             while (keys.hasNext()) {
-                Light light = new Light();
                 String key = (String) keys.next();
+                String type = _o.getJSONObject(key).getString("type");
                 JSONObject state = _o.getJSONObject(key).getJSONObject("state");
 
-                light.key = key;
-                light.id = _o.getJSONObject(key).getString("uniqueid");
-                light.name = _o.getJSONObject(key).getString("name");
-                light.brightness = state.getInt("bri");
-                light.on = state.getBoolean("on");
-                light.hue = state.getInt("hue");
-                light.sat = state.getInt("sat");
+                if (type.equals("Extended color light")) {
+                    Light light = new Light();
+                    light.key = key;
+                    light.id = _o.getJSONObject(key).getString("uniqueid");
+                    light.name = _o.getJSONObject(key).getString("name");
+                    light.brightness = state.getInt("bri");
+                    light.on = state.getBoolean("on");
+                    light.hue = state.getInt("hue");
+                    light.sat = state.getInt("sat");
 
-                lights.add(light);
+                    lights.add(light);
+                }
             }
         } catch (Exception e) {
             Log.e("Dikke error, ey", e.getMessage());
