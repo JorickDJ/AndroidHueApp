@@ -24,11 +24,19 @@
             android:name=".Activities.LightDetailActivity"
             android:label="@string/title_activity_light_detail"
             android:theme="@style/AppTheme" >
+
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Activities.MainActivity" />
         </activity>
-        <activity android:name=".Activities.SettingsActivity" >
+        <activity
+            android:name=".Activities.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:theme="@style/AppTheme" >
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Activities.MainActivity" />
         </activity>
     </application>
 

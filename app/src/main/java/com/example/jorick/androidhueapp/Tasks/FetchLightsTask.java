@@ -31,6 +31,8 @@ public class FetchLightsTask extends AsyncTask<String, Void, ArrayList<Light>> {
         ArrayList<Light> lights = new ArrayList<>();
 
         try {
+            Log.i("URL request", "http://" + params[0] + "/api/" + params[1] + "/lights");
+
             URL url = new URL("http://" + params[0] + "/api/" + params[1] + "/lights");
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
             BufferedReader reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));

@@ -1,5 +1,8 @@
 package com.example.jorick.androidhueapp.Models;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import com.example.jorick.androidhueapp.Tasks.FetchLightsTask;
 import com.example.jorick.androidhueapp.Tasks.SendLightStateTask;
 
@@ -11,24 +14,22 @@ import java.util.ArrayList;
 public class Bridge {
 
     public static Bridge instance = null;
-    private boolean debug = true;
-    private String ip;
-    private String key;
+    private SharedPreferences preferences;
     private ArrayList<Light> lights = new ArrayList<>();
 
-    private Bridge() {
-        if (this.debug) {
-            this.ip = "10.0.0.103";
-            this.key = "newdeveloper";
-        } else {
-            this.ip = "192.168.1.179";
-            this.key = "41c7bc4460e4e214d3e1cf1fe7c1bf";
-        }
+    private final String DEFAULT_IP = "10.0.0.103";
+    private final String DEFAULT_KEY = "newdeveloper";
+
+    private Bridge(Context context) {
+        this.preferences = context.getSharedPreferences("Bridge", 0);
+
+//        this.ip = "192.168.1.179";
+//        this.key = "41c7bc4460e4e214d3e1cf1fe7c1bf";
     }
 
-    public static Bridge getInstance() {
+    public static Bridge getInstance(Context context) {
         if (instance == null) {
-            instance = new Bridge();
+            instance = new Bridge(context);
         }
 
         return instance;
@@ -45,11 +46,17 @@ public class Bridge {
                 lights = l;
                 odcl.onDataChanged();
             }
-        }).execute(ip, key);
+        }).execute(
+                this.preferences.getString("BRIDGE_IP", DEFAULT_IP),
+                this.preferences.getString("BRIDGE_KEY", DEFAULT_KEY)
+        );
     }
 
     public void sendLightState(Light light) {
-        new SendLightStateTask(light).execute(ip, key);
+        new SendLightStateTask(light).execute(
+                this.preferences.getString("BRIDGE_IP", DEFAULT_IP),
+                this.preferences.getString("BRIDGE_KEY", DEFAULT_KEY)
+        );
     }
 
     public interface OnDataChangedListener {

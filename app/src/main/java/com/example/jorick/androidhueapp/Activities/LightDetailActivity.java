@@ -38,7 +38,7 @@ public class LightDetailActivity extends AppCompatActivity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 light.setOn(isChecked);
-                Bridge.getInstance().sendLightState(light);
+                Bridge.getInstance(getApplicationContext()).sendLightState(light);
             }
         });
 
@@ -55,7 +55,7 @@ public class LightDetailActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                Bridge.getInstance().sendLightState(light);
+                Bridge.getInstance(getApplicationContext()).sendLightState(light);
             }
         });
 
@@ -72,7 +72,7 @@ public class LightDetailActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                Bridge.getInstance().sendLightState(light);
+                Bridge.getInstance(getApplicationContext()).sendLightState(light);
             }
         });
 
@@ -89,7 +89,7 @@ public class LightDetailActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                Bridge.getInstance().sendLightState(light);
+                Bridge.getInstance(getApplicationContext()).sendLightState(light);
             }
         });
     }
