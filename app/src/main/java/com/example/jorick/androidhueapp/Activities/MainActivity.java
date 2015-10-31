@@ -1,4 +1,4 @@
-package com.example.jorick.androidhueapp;
+package com.example.jorick.androidhueapp.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
+import com.example.jorick.androidhueapp.Adapters.ListAdapters.LightListAdapter;
+import com.example.jorick.androidhueapp.Models.Bridge;
+import com.example.jorick.androidhueapp.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
         bridge = Bridge.getInstance();
 
-        final LightsAdapter adapter = new LightsAdapter(this, R.layout.light_list_item);
+        final LightListAdapter adapter = new LightListAdapter(this, R.layout.light_list_item);
 
         ListView lstLights = (ListView) findViewById(R.id.lightListView);
         lstLights.setAdapter(adapter);

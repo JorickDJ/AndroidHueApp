@@ -1,4 +1,7 @@
-package com.example.jorick.androidhueapp;
+package com.example.jorick.androidhueapp.Models;
+
+import com.example.jorick.androidhueapp.Tasks.FetchLightsTask;
+import com.example.jorick.androidhueapp.Tasks.SendLightStateTask;
 
 import java.util.ArrayList;
 
@@ -8,12 +11,19 @@ import java.util.ArrayList;
 public class Bridge {
 
     public static Bridge instance = null;
-    private final String ip = "192.168.1.179";
-    private final String key = "41c7bc4460e4e214d3e1cf1fe7c1bf";
+    private boolean debug = true;
+    private String ip;
+    private String key;
     private ArrayList<Light> lights = new ArrayList<>();
 
     private Bridge() {
-        //
+        if (this.debug) {
+            this.ip = "10.0.0.103";
+            this.key = "newdeveloper";
+        } else {
+            this.ip = "192.168.1.179";
+            this.key = "41c7bc4460e4e214d3e1cf1fe7c1bf";
+        }
     }
 
     public static Bridge getInstance() {
@@ -29,7 +39,7 @@ public class Bridge {
     }
 
     public void ScanForLights(final OnDataChangedListener odcl) {
-        new LightRetriever(new LightRetriever.OnCompleteListener() {
+        new FetchLightsTask(new FetchLightsTask.OnCompleteListener() {
             @Override
             public void onLightsLoaded(ArrayList<Light> l) {
                 lights = l;
@@ -39,7 +49,7 @@ public class Bridge {
     }
 
     public void sendLightState(Light light) {
-        new LightSender(light).execute(ip, key);
+        new SendLightStateTask(light).execute(ip, key);
     }
 
     public interface OnDataChangedListener {

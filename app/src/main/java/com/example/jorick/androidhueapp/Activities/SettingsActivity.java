@@ -1,9 +1,11 @@
-package com.example.jorick.androidhueapp;
+package com.example.jorick.androidhueapp.Activities;
 
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+
+import com.example.jorick.androidhueapp.R;
 
 public class SettingsActivity extends AppCompatActivity {
 

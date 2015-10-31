@@ -1,9 +1,10 @@
-package com.example.jorick.androidhueapp;
+package com.example.jorick.androidhueapp.Tasks;
 
 import android.os.AsyncTask;
 import android.util.Log;
 
-import org.json.JSONArray;
+import com.example.jorick.androidhueapp.Models.Light;
+
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -11,17 +12,16 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 
 /**
  * Created by Jorick on 06/10/15.
  */
-public class LightRetriever extends AsyncTask<String, Void, ArrayList<Light>> {
+public class FetchLightsTask extends AsyncTask<String, Void, ArrayList<Light>> {
 
     private OnCompleteListener ocl;
 
-    public LightRetriever(OnCompleteListener ocl) {
+    public FetchLightsTask(OnCompleteListener ocl) {
         this.ocl = ocl;
     }
 
@@ -51,13 +51,13 @@ public class LightRetriever extends AsyncTask<String, Void, ArrayList<Light>> {
 
                 if (type.equals("Extended color light")) {
                     Light light = new Light();
-                    light.key = key;
-                    light.id = _o.getJSONObject(key).getString("uniqueid");
-                    light.name = _o.getJSONObject(key).getString("name");
-                    light.brightness = state.getInt("bri");
-                    light.on = state.getBoolean("on");
-                    light.hue = state.getInt("hue");
-                    light.sat = state.getInt("sat");
+                    light.setKey(key);
+                    light.setId(_o.getJSONObject(key).has("uniqueid") ? _o.getJSONObject(key).getString("uniqueid") : null);
+                    light.setName(_o.getJSONObject(key).getString("name"));
+                    light.setBrightness(state.getInt("bri"));
+                    light.setOn(state.getBoolean("on"));
+                    light.setHue(state.getInt("hue"));
+                    light.setSat(state.getInt("sat"));
 
                     lights.add(light);
                 }

@@ -1,4 +1,4 @@
-package com.example.jorick.androidhueapp;
+package com.example.jorick.androidhueapp.Adapters.ListAdapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,12 +7,15 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.example.jorick.androidhueapp.Models.Light;
+import com.example.jorick.androidhueapp.R;
+
 /**
  * Created by Jorick on 07/10/15.
  */
-public class LightsAdapter extends ArrayAdapter<Light> {
+public class LightListAdapter extends ArrayAdapter<Light> {
 
-    public LightsAdapter(Context context, int resource) {
+    public LightListAdapter(Context context, int resource) {
         super(context, resource);
     }
 
@@ -33,8 +36,8 @@ public class LightsAdapter extends ArrayAdapter<Light> {
             TextView lblName = (TextView) v.findViewById(R.id.lblLightName);
             TextView lblId = (TextView) v.findViewById(R.id.lblLightDescription);
 
-            lblName.setText(light.name);
-            lblId.setText(light.id);
+            lblName.setText(light.getName());
+            lblId.setText(light.getId());
         }
 
         return v;

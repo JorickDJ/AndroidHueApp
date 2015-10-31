@@ -1,7 +1,9 @@
-package com.example.jorick.androidhueapp;
+package com.example.jorick.androidhueapp.Tasks;
 
 import android.os.AsyncTask;
 import android.util.Log;
+
+import com.example.jorick.androidhueapp.Models.Light;
 
 import org.json.JSONObject;
 
@@ -12,20 +14,20 @@ import java.net.URL;
 /**
  * Created by Jorick on 07/10/15.
  */
-public class LightSender extends AsyncTask<String, Void, Void> {
+public class SendLightStateTask extends AsyncTask<String, Void, Void> {
 
     private Light light;
 
-    public LightSender(Light l) {
+    public SendLightStateTask(Light l) {
         light = l;
     }
 
     @Override
     protected Void doInBackground(String... params) {
         try {
-            Log.i("Sender URL", "http://" + params[0] + "/api/" + params[1] + "/lights/" + light.key + "/state");
+            Log.i("Sender URL", "http://" + params[0] + "/api/" + params[1] + "/lights/" + light.getKey() + "/state");
 
-            URL url = new URL("http://" + params[0] + "/api/" + params[1] + "/lights/" + light.key + "/state");
+            URL url = new URL("http://" + params[0] + "/api/" + params[1] + "/lights/" + light.getKey() + "/state");
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 
             urlConnection.setRequestMethod("PUT");
@@ -33,12 +35,12 @@ public class LightSender extends AsyncTask<String, Void, Void> {
             urlConnection.setRequestProperty("Content-Type", "application/json");
 
             JSONObject json = new JSONObject();
-            json.put("on", light.on);
+            json.put("on", light.isOn());
 
-            if (light.on) {
-                json.put("bri", light.brightness);
-                json.put("hue", light.hue);
-                json.put("sat", light.sat);
+            if (light.isOn()) {
+                json.put("bri", light.getBrightness());
+                json.put("hue", light.getHue());
+                json.put("sat", light.getSat());
             }
 
             byte[] jsonData = json.toString().getBytes("UTF-8");
@@ -50,7 +52,7 @@ public class LightSender extends AsyncTask<String, Void, Void> {
             oi.flush();
             oi.close();
 
-            //Log.i("HTTP Response:", "" + urlConnection.getResponseCode());
+            urlConnection.getResponseCode();
         } catch (Exception e) {
             //
         }
