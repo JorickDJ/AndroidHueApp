@@ -17,14 +17,14 @@ public class Bridge {
     private SharedPreferences preferences;
     private ArrayList<Light> lights = new ArrayList<>();
 
-    private final String DEFAULT_IP = "10.0.0.103";
+    private final String DEFAULT_IP = "127.0.0.1";
     private final String DEFAULT_KEY = "newdeveloper";
+
+//    private final String DEFAULT_IP = "192.168.1.179";
+//    private final String DEFAULT_KEY = "41c7bc4460e4e214d3e1cf1fe7c1bf";
 
     private Bridge(Context context) {
         this.preferences = context.getSharedPreferences("Bridge", 0);
-
-//        this.ip = "192.168.1.179";
-//        this.key = "41c7bc4460e4e214d3e1cf1fe7c1bf";
     }
 
     public static Bridge getInstance(Context context) {
