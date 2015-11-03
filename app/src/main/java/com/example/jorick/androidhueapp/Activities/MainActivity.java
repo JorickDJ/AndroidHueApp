@@ -67,6 +67,13 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+
+        refreshLightsList();
+    }
+
     private void refreshLightsList() {
         bridge.ScanForLights(new Bridge.OnDataChangedListener() {
             @Override

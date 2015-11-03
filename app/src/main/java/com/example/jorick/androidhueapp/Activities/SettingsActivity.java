@@ -27,13 +27,20 @@ public class SettingsActivity extends AppCompatActivity {
         this.txtBridgeIp = (TextView) findViewById(R.id.txtBridgeIp);
         this.txtBridgeKey = (TextView) findViewById(R.id.txtBridgeKey);
 
-        this.txtBridgeIp.setText(this.preferences.getString("BRIDGE_IP", "10.0.0.103"));
+        this.txtBridgeIp.setText(this.preferences.getString("BRIDGE_IP", "127.0.0.1"));
         this.txtBridgeKey.setText(this.preferences.getString("BRIDGE_KEY", "newdeveloper"));
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+
+        saveSettings();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
 
         saveSettings();
     }
